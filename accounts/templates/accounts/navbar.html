@@ -1,0 +1,41 @@
+{% load static %}
+<style>
+  a{
+    transition-delay: .3s;
+    transition-duration: .5s;
+  }
+  .hello-msg {
+    font-size: 18px;
+    color: #c3c3c3;
+    margin-right: 30px;
+  }
+  span a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+  span a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <img src="{% static 'images/logo.jpg' %}" width="60px">
+    <a class="navbar-brand">&nbsp;&nbsp;&nbsp;Fire.Net<sub>.pk</sub></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        {% if request.user.is_staff %}
+        <a class="nav-item nav-link" href="/home/">Dashboard<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/products/">Products</a>
+        <!--a class="nav-item nav-link" href="/customer/">Customer</a-->
+        <!--a class="nav-item nav-link disabled" href="#">Disabled</a-->
+        {% else %}
+        <a class="nav-item nav-link" href="{% url 'account' %}">Settings</a>
+        {% endif %}
+      </div>
+    </div>
+    <span class="hello-msg">Hello, {{request.user}}</span>
+    <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+  </nav>
